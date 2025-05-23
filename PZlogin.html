@@ -6,6 +6,14 @@
     <title>ログイン</title>
 </head>
 <body>
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="メールアドレス" required />
+        <input type="password" id="password" placeholder="パスワード" required />
+        <button type="submit">ログイン</button>
+    </form>
+    <div id="error-message"></div>
+    <button onclick="signInWithGoogle()">Googleでログイン</button>
     
 </body>
+<script type="module" src="script/PZlogin.js"></script>
 </html>
