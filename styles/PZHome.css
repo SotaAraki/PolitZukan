@@ -1,0 +1,108 @@
+/* 全体の背景や中央配置の設定 */
+body {
+  background-color: #3c1f2b;
+  margin: 0;
+  font-family: 'Helvetica', sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+/* 背景カードの親要素 */
+.background-cards {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* 背景のクリックを無効化 */
+  z-index: 0;
+}
+
+/* 背景に使う個別のカード画像 */
+.bg-card {
+  position: absolute;
+  width: 100px;
+  height: auto;
+  opacity: 0.3;
+  transform: rotate(-5deg);
+  z-index: 0;
+}
+
+/* 左側のカード位置 */
+.card-left {
+  top: 20%;
+  left: 10%;
+}
+
+/* 右側のカード位置 */
+.card-right {
+  top: 30%;
+  right: 10%;
+  transform: rotate(5deg);
+}
+
+/* 左上寄りのカード位置 */
+.card-top-left {
+  top: 5%;
+  left: 25%;
+  transform: rotate(-10deg);
+}
+
+/* 中央のコンテンツブロック */
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 60px 20px;
+  max-width: 600px;
+}
+
+/* タイトルのデザイン */
+.title {
+  font-size: 3em;
+  margin-bottom: 40px;
+}
+
+/* アイコン2つを横並びに */
+.icon-section {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+/* アイコン画像の見た目とホバー効果 */
+.icon-image {
+  width: 100px;
+  height: auto;
+  transition: transform 0.3s;
+}
+
+.icon-image:hover {
+  transform: scale(1.1);
+}
+
+/* ログインリンクのスタイル */
+.login-link {
+  margin-top: 40px;
+  font-size: 1.2em;
+}
+
+.login-link a {
+  background-color: #fff;
+  color: #3c1f2b;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  background-color: #d6b16a;
+  color: #fff;
+}
