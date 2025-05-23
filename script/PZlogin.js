@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import {
   getAuth,
   GoogleAuthProvider,
+  signInWithPopup,
   signInWithEmailAndPassword 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
@@ -33,7 +34,7 @@ loginForm.addEventListener('submit', (e) => {
       // ログイン成功
       const user = userCredential.user;
       console.log("ログイン成功:", user.email);
-      window.location.href = "PZhome.html"; // 遷移先を適宜変更してください
+      window.location.href = "PZHome.html"; // 遷移先を適宜変更してください
     })
     .catch((error) => {
       // エラー表示
@@ -47,7 +48,7 @@ loginForm.addEventListener('submit', (e) => {
       const user = result.user;
       console.log("Googleログイン成功:", user.displayName, user.email);
       // 例: ログイン後の画面遷移
-      window.location.href = "PZhome.html";
+      window.location.href = "PZHome.html";
     })
     .catch((error) => {
       console.error("Googleログインエラー:", error.message);
