@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { startFloatingCards } from "./floatingCards.js"; // 共通のアニメーション処理
 
 // Firebase 設定
 const firebaseConfig = {
@@ -14,38 +15,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 背景カードのアニメーション
-  const cards = document.querySelectorAll('.bg-card');
-  cards.forEach((card) => {
-    const startX = Math.random() * (window.innerWidth - 120);
-    const startY = Math.random() * (window.innerHeight - 120);
-    card.style.left = `${startX}px`;
-    card.style.top = `${startY}px`;
 
-    let originX = startX;
-    let originY = startY;
-    let x = startX;
-    let y = startY;
-    let dx = (Math.random() - 0.5) * 0.4;
-    let dy = (Math.random() - 0.5) * 0.4;
+  // 背景カードをふわふわ動かす処理（共通関数で呼び出す）
+  startFloatingCards();
 
-    function animate() {
-      x += dx;
-      y += dy;
-
-      if (Math.abs(x - originX) > 20) dx *= -1;
-      if (Math.abs(y - originY) > 20) dy *= -1;
-
-      card.style.left = `${x}px`;
-      card.style.top = `${y}px`;
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  });
-
-  // DOM要素取得
+  // DOM要素取得 ログイン状態による表示切り替え
   const loginSection = document.getElementById("loginSection");
   const logoutSection = document.getElementById("logoutSection");
   const logoutButton = document.getElementById("logoutButton");
