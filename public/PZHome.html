@@ -15,31 +15,35 @@
     <img src="image/ojisan.webp" class="bg-card" alt="カード4">
     <img src="image/ojisan.webp" class="bg-card" alt="カード5">
     <img src="image/ojisan.webp" class="bg-card" alt="カード6">
-　</div>
-
+  </div>
 
   <!-- 中央コンテンツ -->
   <div class="container">
     <h1 class="title">ポリト図鑑</h1>
 
     <div class="icon-section">
-      <!-- 図鑑画面に遷移 -->
       <a href="PZOJlist.html" class="icon-link">
         <img src="image/book.png" alt="図鑑アイコン" class="icon-image" />
       </a>
-      <!-- カード画面に遷移 -->
-      <a href="" class="icon-link">
+      <a href="PZgatya.html" class="icon-link">
         <img src="image/card.png" alt="カードアイコン" class="icon-image" />
       </a>
     </div>
 
-    <div class="login-link">
-      <!-- 新規作成画面に遷移 -->
+    <!-- ログインリンク（新規作成＆ログイン） -->
+    <div class="login-link" id="loginSection">
       <a href="PZCreateAccount.html">新規作成はこちらから</a>
-      <!-- ログイン画面に遷移 -->
       <a href="PZlogin.html">ログインはこちらから</a>
     </div>
+
+    <!-- ログアウトボタン -->
+    <div class="login-link" id="logoutSection" style="display:none;">
+      <a id="logoutButton" class="button-style" href="javascript:void(0);">ログアウト</a>
+    </div>
+
   </div>
-  <script src="script/PZHome.js"></script>
+
+  <script type="module" src="script/PZHome.js"></script>
+  <script type="module" src="script/floatingCards.js"></script>
 </body>
 </html>
