@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>アカウント作成</title>
-  <link rel="stylesheet" href="styles\PZCreateAccount.css">
+  <link rel="stylesheet" href="styles/PZCreateAccount.css">
 </head>
 <body>
-    <h2>新規作成</h2>
-    <input type="email" id="email" placeholder="メールアドレス">
-    <input type="password" id="password" placeholder="パスワード（6文字以上）">
+  <h2>新規作成</h2>
+
+  <form id="signupForm">
+    <input type="text" id="displayName" placeholder="ユーザー名" required />
+    <input type="email" id="email" placeholder="メールアドレス" required />
+    <input type="password" id="password" placeholder="パスワード（6文字以上）" required />
     <div class="error" id="error-message"></div>
-    <button onclick="signUp()">アカウント作成</button>
-    <hr>
+    <button type="submit">アカウント作成</button>
+  </form>
 
-  <!-- 自作のJavaScript -->
+  <hr>
   <script type="module" src="script/PZCreateAccount.js"></script>
-
 </body>
 </html>
