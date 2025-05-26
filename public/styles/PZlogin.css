@@ -1,0 +1,81 @@
+body {
+  background: url("../image/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  font-family: 'Helvetica', sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.login-container {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 40px;
+  width: 300px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.login-form input {
+  width: 300px;
+  height: 43.2px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  background: rgb(255, 255, 255);  /* 白背景 */
+  color: black;                    /* 黒文字に変更！ */
+  box-sizing: border-box;
+}
+
+
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #00c3ff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #00a1d4;
+}
+
+.google-login {
+  padding: 10px;
+  width: 100%;
+  background-color: #FBBC05;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.google-login:hover {
+  background-color: #806104;
+}
+
+.error-message {
+  color: #ffaaaa;
+  font-size: 14px;
+  margin-top: 10px;
+}
