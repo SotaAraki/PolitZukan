@@ -1,11 +1,3 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
 // Firebase 設定
 const firebaseConfig = {
   apiKey: "AIzaSyD0oAjahslXXGOBbpcnu7erGU3doo88t8E",
@@ -14,10 +6,29 @@ const firebaseConfig = {
   appId: "1:1017245886682:web:de761fffddda340b889de3"
 };
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+
 // Firebase 初期化
 const provider = new GoogleAuthProvider();
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
+
 
 const loginForm = document.getElementById('loginForm');
 const errorMessage = document.getElementById('error-message');
@@ -42,15 +53,28 @@ loginForm.addEventListener('submit', (e) => {
     });
 });
 
- window.signInWithGoogle = function() {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
-      console.log("Googleログイン成功:", user.displayName, user.email);
-      // 例: ログイン後の画面遷移
-      window.location.href = "PZHome.html";
-    })
-    .catch((error) => {
-      console.error("Googleログインエラー:", error.message);
-    });
-};
+window.signInWithGoogle = async function () {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    // Firestore にユーザー情報を保存（初回ログインのみ）
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      await setDoc(userRef, {
+        displayName: user.displayName,
+        email: user.email,
+        createdAt: new Date()
+      });
+      console.log("Firestore にユーザー登録:", user.displayName);
+    }
+
+    // ログイン後の画面遷移
+    window.location.href = "PZHome.html";
+  } catch (error) {
+    console.error("Googleログインエラー:", error.message);
+    errorMessage.textContent = "Googleログインに失敗しました";
+  }
+}
