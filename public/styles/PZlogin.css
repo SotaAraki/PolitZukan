@@ -29,17 +29,18 @@ body {
 }
 
 .login-form input {
-  width: 300px;         /* 指定どおりの幅 */
-  height: 43.2px;       /* 指定どおりの高さ */
-  padding: 10px;        /* 内側の余白（必要に応じて調整） */
+  width: 300px;
+  height: 43.2px;
+  padding: 10px;
   margin-bottom: 15px;
   border: none;
   border-radius: 8px;
   font-size: 14px;
-  background: rgb(255, 255, 255);
-  color: white;
-  box-sizing: border-box;  /* padding・border込みで300×43.2に収まる */
+  background: rgb(255, 255, 255);  /* 白背景 */
+  color: black;                    /* 黒文字に変更！ */
+  box-sizing: border-box;
 }
+
 
 
 .login-form button {
