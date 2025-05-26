@@ -77,4 +77,4 @@ window.signInWithGoogle = async function () {
     console.error("Googleログインエラー:", error.message);
     errorMessage.textContent = "Googleログインに失敗しました";
   }
-};
+}
