@@ -1,0 +1,16 @@
+{
+  "name": "politzukan",
+  "version": "1.0.0",
+  "description": "2025年前期のITプロジェクト開発の授業で作成",
+  "type": "module",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^11.8.1"
+  }
+}
