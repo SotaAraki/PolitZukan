@@ -38,9 +38,18 @@ body {
 }
 
 #backbutton, #nextbutton {
-    width: 50px;
+    width: 40px;
     height: auto;
     cursor: pointer;
+    margin: 0 10px 0 10px;
+}
+
+#modorubutton {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    margin-bottom: -40px;
+    margin-left: 10px;
 }
 
 /* ✅ スマホやタブレットなど狭い画面では列数を減らす */
