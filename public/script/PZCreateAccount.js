@@ -19,12 +19,6 @@ import {
   setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-import { startFloatingCards } from "./floatingCards.js"; 
-
-document.addEventListener("DOMContentLoaded", () => {
-  startFloatingCards(); // 共通処理を呼び出す
-});
-
 // 初期化
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
