@@ -1,36 +1,57 @@
 body {
+    /* background-image: 
+        url("../image/hakusi.jpg"),
+        url("../image/background.jpg");
+    background-repeat: no-repeat, no-repeat;
+    background-position: center center, center center;
+    background-size: 95vw 92vh, cover;
+    background-attachment: fixed, fixed;
+
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0; */
     background: url("../image/background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed, fixed;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     justify-items: center;
+    padding: 10px 5%;
 }
 
 .grid-container img {
-    width: 70%;
+    width: 100%;
     height: auto;
-    display: block;
+    max-width: 150px;
     border: 1px solid #ccc;
 }
 
 .footer-buttons {
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
+    align-items: center;
+    padding: 10px;
 }
 
-#backbotton{
-    width: 40px;
+#backbutton, #nextbutton {
+    width: 50px;
     height: auto;
     cursor: pointer;
-    
 }
 
-#nextbotton {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
+/* ✅ スマホやタブレットなど狭い画面では列数を減らす */
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2列に */
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr); /* 1列に */
+    }
 }
