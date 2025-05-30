@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { startFloatingCards } from "./floatingCards.js"; // 共通のアニメーション処理
+// import { startFloatingCards } from "./floatingCards.js"; // 共通のアニメーション処理
 
 // Firebase 設定
 const firebaseConfig = {
@@ -17,7 +17,7 @@ const auth = getAuth(app);
 document.addEventListener("DOMContentLoaded", () => {
 
   // 背景カードをふわふわ動かす処理（共通関数で呼び出す）
-  startFloatingCards();
+  // startFloatingCards();
 
   // DOM要素取得 ログイン状態による表示切り替え
   const loginSection = document.getElementById("loginSection");
