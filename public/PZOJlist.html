@@ -12,24 +12,19 @@
         <img onclick="location.href='PZHome.html'" id="modorubutton" src="/public/image/backyajirusi.png" alt="next">
     </header>
     <main>
-        <div class="grid-container">
-            <img src="/public/image/ojisan.webp" alt="画像1">
-            <img src="/public/image/ojisan.webp" alt="画像2">
-            <img src="/public/image/ojisan.webp" alt="画像3">
-            <img src="/public/image/ojisan.webp" alt="画像4">
-            <img src="/public/image/ojisan.webp" alt="画像5">
-            <img src="/public/image/ojisan.webp" alt="画像6">
-            <img src="/public/image/ojisan.webp" alt="画像7">
-            <img src="/public/image/ojisan.webp" alt="画像8">
+       <!-- grid-container の代わりにこちらを使う -->
+        <div id="politician-list" class="grid-container"></div>
+
         </div>
     </main>
     <footer>
         <div class="footer-buttons">
-            <img id="backbutton" src="/public/image/yajirusi2.png" alt="back">
-            <img onclick="location.href='PZOJlist2.html'" id="nextbutton" src="/public/image/yajirusi.png" alt="next">
+            <img id="backbutton" src="/public/image/yajirusi2.png" alt="前へ" class="arrow-button" onclick="changePage(-1)">
+            <span id="pageInfo">1 / ?</span>
+            <img id="nextbutton" src="/public/image/yajirusi.png" alt="次へ" class="arrow-button" onclick="changePage(1)">
         </div>
-        <p></p>
     </footer>
     <script type="module" src="script/PZOJlist.js"></script>
+
 </body>
 </html>
