@@ -6,10 +6,15 @@ html内に以下のコードを追加
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 */
 
-// floatingCards.js
 
 // 背景カードの画像パスと枚数（必要に応じて変更可能）
-const cardImageSrc = "image/ojisan.webp";  // 表示するカード画像のファイルパス
+// 表示するカード画像のファイルパス
+const cardImages = [
+  "image/ojisan.webp",
+  "image/ojisan2.webp",
+  "image/ojisan3.webp",
+  "image/石破茂.png"
+];
 const cardCount = 6;                       // 表示するカードの枚数
 
 // 背景カードの親要素とカード要素を作成する関数
@@ -20,7 +25,12 @@ function createBackgroundCards() {
   // 指定枚数分のカード画像要素を作成し、親に追加していく
   for (let i = 0; i < cardCount; i++) {
     const img = document.createElement("img");       // img要素を作成
-    img.src = cardImageSrc;                           // 画像のパスをセット
+
+    // ランダムに画像を選ぶ（被りOK）
+    const randomIndex = Math.floor(Math.random() * cardImages.length);
+    img.src = cardImages[randomIndex];
+
+    //img.src = cardImageSrc;                           // 画像のパスをセット
     img.alt = `カード${i + 1}`;                       // 代替テキスト（アクセシビリティ用）
     img.className = "bg-card";                        // CSSクラス名を設定（浮遊アニメ用）
     container.appendChild(img);                       // 親divにカード画像を追加
