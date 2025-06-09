@@ -23,7 +23,7 @@ async function loadPoliticians() {
 
 function renderPage(page) {
   const container = document.getElementById("politician-list");
-  container.innerHTML = ""; // 一度クリア
+  container.innerHTML = "";
 
   const start = (page - 1) * cardsPerPage;
   const end = start + cardsPerPage;
@@ -31,9 +31,42 @@ function renderPage(page) {
 
   pageItems.forEach(data => {
     const card = document.createElement("div");
-    card.innerHTML = `
-      <img src="${data.image_url}" alt="${data.name}">
-    `;
+    const img = document.createElement("img");
+    img.src = data.image_url;
+    img.alt = data.name;
+    img.style.cursor = "pointer";
+
+    // 画像クリックでモーダル表示
+    img.addEventListener("click", () => {
+      document.getElementById("popup-name").textContent = data.name;
+      document.getElementById("popup-image").src = data.image_url;
+      document.getElementById("popup-description").textContent = data.description || "";
+      // ガチャで当てたか確認
+      const gotHobby = localStorage.getItem(`gotHobby_${data.image_url}`) === "true";
+      const hobbyElement = document.getElementById("popup-hobby");
+
+      if (gotHobby) {
+        hobbyElement.textContent = `趣味: ${data.hobbies}`;
+        hobbyElement.style.display = "block";
+      } else {
+        hobbyElement.textContent = "";
+        hobbyElement.style.display = "none";
+      }
+
+      const list = document.getElementById("achievements-list");
+      list.innerHTML = "";
+      if (data.achievements && Array.isArray(data.achievements)) {
+        data.achievements.forEach(a => {
+          const item = document.createElement("li");
+          item.textContent = `${a.year}年：${a.event} - ${a.detail}`;
+          list.appendChild(item);
+        });
+      }
+
+      document.getElementById("popup").style.display = "block";
+    });
+
+    card.appendChild(img);
     container.appendChild(card);
   });
 
@@ -49,5 +82,12 @@ window.changePage = function (direction) {
     renderPage(currentPage);
   }
 };
+
+// 閉じるボタン
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("popup-close").addEventListener("click", () => {
+    document.getElementById("popup").style.display = "none";
+  });
+});
 
 loadPoliticians();
