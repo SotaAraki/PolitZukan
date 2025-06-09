@@ -41,7 +41,17 @@ function renderPage(page) {
       document.getElementById("popup-name").textContent = data.name;
       document.getElementById("popup-image").src = data.image_url;
       document.getElementById("popup-description").textContent = data.description || "";
-      document.getElementById("popup-hobbies").textContent = data.hobbies || "";
+      // ガチャで当てたか確認
+      const gotHobby = localStorage.getItem(`gotHobby_${data.image_url}`) === "true";
+      const hobbyElement = document.getElementById("popup-hobby");
+
+      if (gotHobby) {
+        hobbyElement.textContent = `趣味: ${data.hobbies}`;
+        hobbyElement.style.display = "block";
+      } else {
+        hobbyElement.textContent = "";
+        hobbyElement.style.display = "none";
+      }
 
       const list = document.getElementById("achievements-list");
       list.innerHTML = "";
