@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD0oAjahslXXGOBbpcnu7erGU3doo88t8E",
@@ -11,6 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+const auth = getAuth(app);
 const leftHalf = document.getElementById('leftHalf');
 const rightHalf = document.getElementById('rightHalf');
 const card = document.getElementById('card');
@@ -25,9 +28,16 @@ async function loadRandomCard() {
   const randomCard = allCards[Math.floor(Math.random() * allCards.length)];
   return randomCard;
 }
-
 document.getElementById('packWrapper').addEventListener('click', async () => {
   if (opened) return;
+
+  const user = auth.currentUser;
+  if (!user) {
+    alert("ガチャを引くにはログインが必要です。ログインページに移動します。");
+    window.location.href = "PZlogin.html"; // ログインページのURLに置き換えてください
+    return;
+  }
+
   opened = true;
 
   leftHalf.classList.add('openedLeft');
@@ -43,6 +53,20 @@ document.getElementById('packWrapper').addEventListener('click', async () => {
 
   const cardData = await loadRandomCard();
   const imageUrl = cardData.image_url;
+
+  const userId = user.uid;
+  const cardId = cardData.id || imageUrl;
+
+  const userCardRef = doc(db, "users", userId, "collection", cardId);
+  const snapshot = await getDoc(userCardRef);
+
+  if (!snapshot.exists()) {
+    await setDoc(userCardRef, {
+      name: cardData.name,
+      image_url: cardData.image_url,
+      obtainedAt: new Date()
+    });
+  }
 
   card.style.backgroundImage = `url(${imageUrl})`;
   localStorage.setItem(`gotHobby_${imageUrl}`, "true");
