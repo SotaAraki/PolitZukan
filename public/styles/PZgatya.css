@@ -1,6 +1,7 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #381819;
+  background: url("../image/background.jpg") no-repeat center center fixed;
+  background-size: cover;
   color: #FFD700;
   text-align: center;
   padding-top: 50px;

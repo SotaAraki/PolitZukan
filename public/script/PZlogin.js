@@ -22,6 +22,10 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+import { 
+  onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
 
 // Firebase 初期化
 const provider = new GoogleAuthProvider();
@@ -45,6 +49,14 @@ loginForm.addEventListener('submit', (e) => {
       // ログイン成功
       const user = userCredential.user;
       console.log("ログイン成功:", user.email);
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          console.log("ログイン中のユーザーID:", uid);
+        }
+      });
+
       window.location.href = "PZHome.html"; // 遷移先を適宜変更してください
     })
     .catch((error) => {

@@ -126,6 +126,30 @@ body {
   padding-left: 1.2em;
 }
 
+/*　所持している枚数によって変更  */
+#pokedex.gold {
+  background: linear-gradient(135deg, gold, orange);
+  animation: sparkle 2s infinite;
+  box-shadow: 0 0 30px gold;
+}
+
+#pokedex.silver {
+  background: linear-gradient(135deg, silver, #ccc);
+  box-shadow: 0 0 15px silver;
+}
+
+#pokedex.bronze {
+  background: #b08d57;
+  box-shadow: 0 0 10px #b08d57;
+}
+
+@keyframes sparkle {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+  100% { filter: brightness(1); }
+}
+
+
 
 /* ✅ スマホやタブレットなど狭い画面では列数を減らす */
 @media (max-width: 1024px) {
