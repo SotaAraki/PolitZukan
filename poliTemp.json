@@ -1,0 +1,13 @@
+    {
+        "id": "",
+        "name": "",
+        "image_url": "",
+        "description": "",
+        "hobbies": "",
+        "achievements": [
+        {"year": 2000, "event": "", "detail": ""},
+        {"year": 2000, "event": "", "detail": ""},
+        {"year": 2000, "event": "", "detail": ""}
+        ],
+        "tags": ["", ""]
+    }
