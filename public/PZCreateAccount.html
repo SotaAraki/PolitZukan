@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アカウント作成</title>
+  <link rel="stylesheet" href="styles/PZCreateAccount.css">
+</head>
+<body>
+  <div class="signup-container">
+    <h2>新規作成</h2>
+
+    <form id="signupForm">
+      <input type="text" id="displayName" placeholder="ユーザー名" required />
+      <input type="email" id="email" placeholder="メールアドレス" required />
+      <input type="password" id="password" placeholder="パスワード（6文字以上）" required />
+      <div class="error" id="error-message"></div>
+      <button type="submit">アカウント作成</button>
+    </form>
+
+  </div>
+
+  <script type="module" src="script/PZCreateAccount.js"></script>
+  <script type="module" src="script/floatingCards.js"></script>
+</body>
+
+</html>
