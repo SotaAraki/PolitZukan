@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>カード作成ツール</title>
+  <link rel="stylesheet" href="cardMaker.css" />
+</head>
+<body>
+  <h1>カードジェネレーター</h1>
+
+  <div class="form">
+    <input type="text" id="circleText" placeholder="左上の文字（例：白）" />
+    <input type="text" id="nameText" placeholder="名前（例：小泉 進次郎）" />
+    <input type="file" id="imageInput" accept="image/*" />
+
+    <!-- 追加：画像位置・拡大縮小調整スライダー -->
+    <label for="posXRange">画像X位置調整</label>
+    <input type="range" id="posXRange" min="0" max="100" value="50" />
+    <label for="posYRange">画像Y位置調整</label>
+    <input type="range" id="posYRange" min="0" max="100" value="50" />
+    <label for="scaleRange">画像拡大縮小</label>
+    <input type="range" id="scaleRange" min="50" max="150" value="100" />
+
+    <input type="text" id="skillText" placeholder="技名（例：肘打ちエルボー）" />
+    <input type="text" id="footerText" placeholder="下部テキスト（例：S56）" />
+  </div>
+
+  <!-- カード本体 -->
+  <div class="card" id="card">
+    <!-- 背景画像として設定 -->
+    <div class="background" id="cardBackground"></div>
+
+    <div class="circle" id="circle">白</div>
+    <div class="name" id="name">小泉 進次郎</div>
+    <span class="label">必殺</span>
+    <div class="skill" id="skill">肘打ちエルボー</div>
+    <div class="footer" id="footer">S56</div>
+  </div>
+
+  <button id="downloadBtn">カードを画像として保存</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="cardMaker.js"></script>
+</body>
+</html>
