@@ -73,8 +73,14 @@ document.getElementById('downloadBtn').addEventListener('click', function () {
     useCORS: true
   }).then((canvas) => {
     const link = document.createElement('a');
-    link.download = 'card.png';
+
+    // 入力された名前を取得して、空なら "card" を使用
+    const nameInput = document.getElementById('nameText').value.trim();
+    const fileName = nameInput !== '' ? `${nameInput}card.png` : 'card.png';
+
+    link.download = fileName;
     link.href = canvas.toDataURL('image/png');
     link.click();
   });
 });
+
