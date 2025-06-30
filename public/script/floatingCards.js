@@ -10,12 +10,37 @@ html内に以下のコードを追加
 // 背景カードの画像パスと枚数（必要に応じて変更可能）
 // 表示するカード画像のファイルパス
 const cardImages = [
-  "image/ojisan.webp",
-  "image/ojisan2.webp",
-  "image/ojisan3.webp",
-  "image/石破茂.png"
+  // 1
+  "image/cardImages/井上 英孝card.png",
+  "image/cardImages/大西 宏幸card.png",
+  "image/cardImages/竹内 祥倫card.png",
+  "image/cardImages/宮出 千慧card.png",
+  // 2
+  "image/cardImages/守島 正card.png",
+  "image/cardImages/左藤 章card.png",
+  "image/cardImages/小川 陽太card.png",
+  "image/cardImages/藤田 美季card.png",
+  "image/cardImages/堀内 孝雄card.png",
+  // 3
+  "image/cardImages/東 徹card.png",
+  "image/cardImages/佐藤 茂樹card.png",
+  "image/cardImages/萩原 仁card.png",
+  "image/cardImages/渡部 結card.png",
+  "image/cardImages/中条 栄太郎card.png",
+  // 4
+  "image/cardImages/美延 映夫card.png",
+  "image/cardImages/中山 泰秀card.png",
+  "image/cardImages/清水 忠史card.png",
+  "image/cardImages/黒川 洋司card.png",
+  "image/cardImages/寺川 幸生栄card.png",
+  // 5
+  "image/cardImages/梅村 聡card.png",
+  "image/cardImages/国重 徹card.png",
+  "image/cardImages/大石 晃子card.png",
+  "image/cardImages/宮本 岳志card.png",
+  "image/cardImages/石橋 篤史card.png",
 ];
-const cardCount = 6;                       // 表示するカードの枚数
+const cardCount = 10;                       // 表示するカードの枚数
 
 // 背景カードの親要素とカード要素を作成する関数
 function createBackgroundCards() {
