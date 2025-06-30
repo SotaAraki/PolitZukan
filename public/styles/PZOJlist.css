@@ -78,12 +78,16 @@ body {
 }
 
 #modorubutton {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
-    margin-bottom: -40px;
-    margin-left: 10px;
+  position: fixed;        /* 常に画面の同じ場所に表示 */
+  top: 10px;              /* 上から10px */
+  left: 10px;             /* 左から10px */
+  width: 40px;            /* 適度なサイズ */
+  height: auto;
+  cursor: pointer;
+  z-index: 1000;          /* 前面に表示 */
 }
+
+
 
 .popup {
   display: none;
