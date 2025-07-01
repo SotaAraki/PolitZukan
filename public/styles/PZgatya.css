@@ -24,7 +24,7 @@ h1 {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url('../image/石破茂.png') center/cover;
+  background: url('../image/packtitle.png') center/cover;
   transition: transform 0.7s ease;
   border-radius: 12px;
   box-shadow: 0 0 12px #FFD700, 0 0 25px rgba(255, 215, 0, 0.4);
@@ -104,15 +104,14 @@ h1 {
 }
 
 #modorubutton {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
-    margin-bottom: -40px;
-    margin-left: 10px;
+  position: fixed;        /* 常に画面の同じ場所に表示 */
+  top: 10px;              /* 上から10px */
+  left: 10px;             /* 左から10px */
+  width: 40px;            /* 適度なサイズ */
+  height: auto;
+  cursor: pointer;
+  z-index: 1000;          /* 前面に表示 */
 }
-
-
-
 
 #packWrapper.sucked {
   transform: translateY(150px) scale(0.3);
