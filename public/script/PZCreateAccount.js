@@ -54,7 +54,7 @@ async function signUp() {
     });
 
     alert(`アカウント作成完了！ようこそ ${displayName} さん`);
-    window.location.href = "/PZlogin.html";
+    window.location.href = "./PZlogin.html";
 
   } catch (error) {
     console.error(error);
