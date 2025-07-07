@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>list</title>
-    <link rel="stylesheet" href="styles/PZOJlist.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>list</title>
+  <link rel="stylesheet" href="styles/PZOJlist.css">
 </head>
 <body>
-    <header>
-        <h1></h1>
-        <img onclick="location.href='PZHome.html'" id="modorubutton" src="./image/backyajirusi.png" alt="next">
-    </header>
-    <main>
-       <!-- grid-container の代わりにこちらを使う -->
-        <div id="pokedex">
-            <div id="politician-list" class="grid-container"></div>
-        </div>
+  <div id="header"></div>
+  <main>
+    <div id="pokedex">
+      <div id="politician-list" class="grid-container"></div>
+    </div>
 
-     <!-- モーダルダイアログ -->
     <div id="popup" class="popup">
-    <span id="popup-close" class="popup-close">&times;</span>
-    <h3 id="popup-name"></h3>
-    <img id="popup-image" src="" alt="" />
-    <p id="popup-description"></p>
-    <p id="popup-hobby" style="display: none;"></p>
-    <div id="popup-achievements">
+      <span id="popup-close" class="popup-close">&times;</span>
+      <h3 id="popup-name"></h3>
+      <img id="popup-image" src="" alt="" />
+      <p id="popup-description"></p>
+      <p id="popup-hobby" style="display: none;"></p>
+      <div id="popup-achievements">
         <strong>今までの実績</strong>
         <ul id="achievements-list"></ul>
+      </div>
+      <button id="favorite-button" style="margin:10px; padding:8px 16px; font-size:16px; border-radius:6px; cursor:pointer;"></button>
     </div>
+  </main>
+  <footer>
+    <div class="footer-buttons">
+      <img id="backbutton" src="./image/yajirusi2.png" alt="前へ" class="arrow-button" onclick="changePage(-1)">
+      <span id="pageInfo">1 / ?</span>
+      <img id="nextbutton" src="./image/yajirusi.png" alt="次へ" class="arrow-button" onclick="changePage(1)">
     </div>
-
-
-    </main>
-    <footer>
-        <div class="footer-buttons">
-            <img id="backbutton" src="./image/yajirusi2.png" alt="前へ" class="arrow-button" onclick="changePage(-1)">
-            <span id="pageInfo">1 / ?</span>
-            <img id="nextbutton" src="./image/yajirusi.png" alt="次へ" class="arrow-button" onclick="changePage(1)">
-        </div>
-    </footer>
-    <script type="module" src="script/PZOJlist.js"></script>
-
+  </footer>
+  <script type="module" src="script/PZOJlist.js"></script>
+  <script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('header').innerHTML = html;
+    });
+  </script>
 </body>
 </html>

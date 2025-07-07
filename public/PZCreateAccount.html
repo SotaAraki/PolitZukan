@@ -6,10 +6,9 @@
   <link rel="stylesheet" href="styles/PZCreateAccount.css">
 </head>
 <body>
-  <img onclick="location.href='PZHome.html'" id="modorubutton" src="./image/backyajirusi.png" alt="next">
+  <div id="header"></div>
   <div class="signup-container">
     <h2>新規作成</h2>
-
     <form id="signupForm">
       <input type="text" id="displayName" placeholder="ユーザー名" required />
       <input type="email" id="email" placeholder="メールアドレス" required />
@@ -17,11 +16,16 @@
       <div class="error" id="error-message"></div>
       <button type="submit">アカウント作成</button>
     </form>
-
   </div>
 
   <script type="module" src="script/PZCreateAccount.js"></script>
   <script type="module" src="script/floatingCards.js"></script>
+  <script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('header').innerHTML = html;
+    });
+  </script>
 </body>
-
 </html>

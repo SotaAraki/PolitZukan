@@ -1,15 +1,5 @@
 body {
-    /* background-image: 
-        url("../image/hakusi.jpg"),
-        url("../image/background.jpg");
-    background-repeat: no-repeat, no-repeat;
-    background-position: center center, center center;
-    background-size: 95vw 92vh, cover;
-    background-attachment: fixed, fixed;
-
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0; */
+    
     background: url("../image/background.jpg") no-repeat center center fixed;
     background-size: cover;
     background-attachment: fixed, fixed;
@@ -55,6 +45,8 @@ body {
   margin: 4px 0;
 }
 
+
+
 /* ページ送りフッター */
 .footer-buttons {
   display: flex;
@@ -88,47 +80,107 @@ body {
 }
 
 
-
+/* ダイアログ全体 */
+/* ダイアログ全体 */
 .popup {
   display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background: rgba(0,0,0,0.85);
   border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  padding: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
   z-index: 1000;
   width: 90%;
-  max-width: 500px;
+  max-width: 400px;
+  max-height: 80vh; /* 高さを抑える */
+  overflow-y: auto; /* 内容が多いとスクロール */
   text-align: center;
-  overflow-y: auto;
-  max-height: 80%;
+  color: white;
 }
 
+/* 画像 */
 .popup img {
-  width: 60%;      /* 元の 100% から縮小 */
+  width: 80%;
   height: auto;
-  margin: 10px auto;
-  display: block;  /* 中央寄せ */
-  border-radius: 10px;
+  border-radius: 6px;
+  margin: 10px 0;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
+/* 名前 */
+#popup-name {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin: 8px 0;
+}
 
+/* 説明 */
+#popup-description {
+  font-size: 0.95em;
+  margin: 6px 0;
+}
+
+/* 趣味 */
+#popup-hobby {
+  font-size: 0.9em;
+  color: #ddd;
+  margin: 4px 0;
+}
+
+/* 実績 */
+#popup-achievements {
+  text-align: left;
+  margin-top: 10px;
+}
+#popup-achievements strong {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+#achievements-list {
+  padding-left: 1.2em;
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+/* 閉じるボタン */
 .popup-close {
   position: absolute;
   top: 10px;
   right: 16px;
   font-size: 24px;
   cursor: pointer;
-  color: #444;
+  color: #fff;
 }
 
-#achievements-list {
-  text-align: left;
-  padding-left: 1.2em;
+/* お気に入りボタン */
+#favorite-button {
+  background-color: #FFD700;
+  border: none;
+  color: #381819;
+  padding: 8px 16px;
+  margin-top: 10px;
+  font-size: 1em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
+#favorite-button:hover {
+  background-color: #e6c200;
+}
+
+.popup::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+
+.popup {
+  border: 2px solid #FFD700;
+}
+
 
 /*　所持している枚数によって変更  */
 #pokedex.gold {
