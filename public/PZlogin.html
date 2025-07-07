@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles/PZlogin.css" />
 </head>
 <body>
-  <img onclick="location.href='PZHome.html'" id="modorubutton" src="./image/backyajirusi.png" alt="next">
+  <div id="header"></div>
   <div class="login-container">
     <h2>ログイン</h2>
     <form id="loginForm" class="login-form">
@@ -18,12 +18,19 @@
     <div id="error-message" class="error-message"></div>
     <button class="google-login" onclick="signInWithGoogle()">Googleでログイン</button>
     <p style="margin-top: 1em; font-size: 0.9em;">
-      アカウント新規作成は<a href="PZCreateAccount.html" style="color: rgb(28, 169, 215); text-decoration: underline;">こちら</a>
+      アカウント新規作成は
+      <a href="PZCreateAccount.html" style="color: rgb(28, 169, 215); text-decoration: underline;">こちら</a>
     </p>
   </div>
 
   <script type="module" src="script/PZlogin.js"></script>
-  <!-- 背景を動かす処理 -->
   <script type="module" src="script/floatingCards.js"></script>
+  <script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('header').innerHTML = html;
+    });
+  </script>
 </body>
 </html>

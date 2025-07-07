@@ -7,27 +7,27 @@
   <link rel="stylesheet" href="styles/PZgatya.css" />
 </head>
 <body>
-  <header>
-        <h1></h1>
-        <img onclick="location.href='PZHome.html'" id="modorubutton" src="./image/backyajirusi.png" alt="next">
-  </header>
+  <div id="header"></div>
   <h1>大阪の乱</h1>
   <div id="packWrapper" class="packHalf"></div>
   <p id="openText">開封する</p>
   <div id="card" class="revealedCard">
     <img id="cardImage" alt="当たったカード" style="width:100%; height:auto;" />
   </div>
-
-  
-  
-
   <div id="voteBoxWrapper">
     <img id="voteBox" src="./image/投票箱.png" alt="投票箱" />
   </div>
-
   <button id="okButton">OK</button>
   <audio id="sfx" src="otoko_iyahho.mp3" preload="auto"></audio>
 
   <script type="module" src="script/PZgatya.js"></script>
+  <p id="timerMessage" style="margin-top:20px; font-size:16px; color:#fff;"></p>
+  <script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('header').innerHTML = html;
+    });
+  </script>
 </body>
 </html>

@@ -1,34 +1,22 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD0oAjahslXXGOBbpcnu7erGU3doo88t8E",
-  authDomain: "system-development-9bd2d.firebaseapp.com",
-  projectId: "system-development-9bd2d",
-  appId: "1:1017245886682:web:de761fffddda340b889de3"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+import { auth } from "./authUtils.js";
+import { getAllPoliticians, getLastGachaTime, setGachaTimestamp, saveUserCard } from "./dbUtils.js";
 
 const card = document.getElementById('card');
 const sfx = document.getElementById('sfx');
 const okButton = document.getElementById('okButton');
-const voteBox = document.getElementById('voteBox'); // 投票箱
+const voteBox = document.getElementById('voteBox');
 const packWrapper = document.getElementById('packWrapper');
 let opened = false;
 
+const SIX_HOURS_MS = 6 * 60 * 60 * 1000;
 
-async function loadRandomCard() {
-  const snapshot = await getDocs(collection(db, "politicians"));
-  const allCards = snapshot.docs.map(doc => doc.data());
-  const randomCard = allCards[Math.floor(Math.random() * allCards.length)];
-  return randomCard;
+function getTimeRemaining(lastTime) {
+  const now = new Date();
+  const diff = SIX_HOURS_MS - (now - lastTime);
+  const hours = Math.floor(diff / 3600000);
+  const minutes = Math.floor((diff % 3600000) / 60000);
+  return { hours, minutes };
 }
-
-// ...（Firebase初期化などそのまま）
 
 packWrapper.addEventListener('click', async () => {
   if (opened) return;
@@ -40,17 +28,17 @@ packWrapper.addEventListener('click', async () => {
     return;
   }
 
-  opened = true;
-
-  // 投票箱アニメーション
-  voteBox.classList.add('show');
-  const voteBoxWrapper = document.getElementById('voteBoxWrapper');
-  if (voteBoxWrapper) {
-    voteBoxWrapper.classList.add('show');
-  } else {
-    console.warn('voteBoxWrapper が見つかりません');
+  const lastTime = await getLastGachaTime(user.uid);
+  if (lastTime && new Date() - lastTime < SIX_HOURS_MS) {
+    const { hours, minutes } = getTimeRemaining(lastTime);
+    alert(`次のガチャは ${hours}時間${minutes}分後に引けます。`);
+    return;
   }
 
+  opened = true;
+  await setGachaTimestamp(user.uid);
+
+  voteBox.classList.add('show');
   setTimeout(() => {
     packWrapper.classList.add('sucked');
   }, 400);
@@ -60,49 +48,19 @@ packWrapper.addEventListener('click', async () => {
     sfx.currentTime = 0;
     sfx.play();
 
-    const cardData = await loadRandomCard();
-    const imageUrl = cardData.image_url;
-    const userId = user.uid;
-    const cardId = cardData.id || imageUrl;
-
-    const userCardRef = doc(db, "users", userId, "collection", cardId);
-    const snapshot = await getDoc(userCardRef);
-
-    console.log("imageUrl:", imageUrl);
-
-    if (!snapshot.exists()) {
-      await setDoc(userCardRef, {
-        name: cardData.name,
-        image_url: imageUrl,
-        obtainedAt: new Date()
-      });
-    }
+    const cards = await getAllPoliticians();
+    const randomCard = cards[Math.floor(Math.random() * cards.length)];
+    await saveUserCard(user.uid, randomCard);
 
     const cardImg = document.getElementById('cardImage');
-    console.log(document.getElementById("cardImage").src);
+    cardImg.src = randomCard.image_url;
+    cardImg.style.display = 'block';
 
-    if (imageUrl) {
-      cardImg.src = imageUrl;
-      cardImg.style.display = 'block';
-      console.log("✅ カード画像セット成功:", cardImg.src);
-    } else {
-      console.warn("❌ 画像URLが存在しません");
-    }
-
-
-    // 投票箱を非表示に
     voteBox.classList.remove('show');
-    voteBoxWrapper.classList.remove('show');
 
     setTimeout(() => {
-      // 表示トリガー（アニメーション）
       card.classList.add('fromBox', 'show');
-      console.log("カード要素:", card);
-
-      const openText = document.getElementById('openText');
-if (openText) {
-  openText.style.display = 'none';
-}
+      document.getElementById('openText').style.display = 'none';
     }, 200);
 
     setTimeout(() => {
@@ -112,6 +70,5 @@ if (openText) {
 });
 
 okButton.addEventListener('click', () => {
-  window.location.href = 'PZhome.html';
+  window.location.href = 'PZHome.html';
 });
-
