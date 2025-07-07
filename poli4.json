@@ -3,6 +3,7 @@
         "id": "poli_401",
         "name": "美延 映夫",
         "image_url": "",
+        "political_party": "維新の会", 
         "description": "日本維新の会所属、衆議院議員（大阪4区）。大阪市議4期、市議長経験から、地域密着・教育・行財政改革に注力。",
         "hobbies": "",
         "achievements": [
@@ -19,6 +20,7 @@
         "id": "poli_402",
         "name": "中山 泰秀",
         "image_url": "",
+        "political_party": "自民党",
         "description": "自由民主党所属、元衆議院議員（５期）。外務副大臣、防衛副大臣等歴任。外交・安全保障・サイバー分野の専門家。",
         "hobbies": "",
         "achievements": [
@@ -34,6 +36,7 @@
             "id": "poli_403",
             "name": "清水 忠史",
             "image_url": "",
+            "political_party": "共産党",
             "description": "日本共産党所属、元衆議院議員（２期）・大阪市議。元お笑い芸人。消費税減税・生活支援を中心に活動。",
             "hobbies": "",
             "achievements": [
@@ -49,6 +52,7 @@
             "id": "poli_404",
             "name": "黒川 洋司",
             "image_url": "",
+            "political_party": "参政党",
             "description": "参政党所属、会社経営者。美容室経営をしながら、出所者支援や子育て支援事業を展開。",
             "hobbies": "",
             "achievements": [
@@ -62,6 +66,7 @@
             "id": "poli_405",
             "name": "寺川 幸生栄",
             "image_url": "",
+            "political_party": "無所属",
             "description": "無所属、元介護職員。衆議院大阪4区に立候補。地域福祉や少子化対策など身近な政策を訴える。",
             "hobbies": "",
             "achievements": [
