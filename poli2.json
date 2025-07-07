@@ -3,6 +3,7 @@
         "id": "poli_201",
         "name": "守島 正",
         "image_url": "",
+        "political_party": "維新の会", 
         "description": "日本維新の会所属の衆議院議員（2期）。日本維新の会常任役員・選対本部長代行。大阪市会議員（3期）、大阪維新の会政調会長（第3代）などを歴任",
         "hobbies": "読書とランニング",
         "achievements": [
@@ -17,7 +18,8 @@
     {
         "id": "poli_202",
         "name": "左藤 章",
-        "image_url": "",
+        "image_url": "自民党",
+        "political_party": "", 
         "description": "自由民主党所属の元衆議院議員（5期）。福井大学工学部卒",
         "hobbies": "読書、旅行、蕎麦屋・ラーメン屋めぐり",
         "achievements": [
@@ -33,6 +35,7 @@
         "id": "poli_203",
         "name": "小川 陽太",
         "image_url": "",
+        "political_party": "共産党", 
         "description": "元大阪市議（2期）。近畿大学卒、平野民商に勤務。現在、党大阪二区地区委員長、党大阪2区国政対策委員長。",
         "hobbies": "生き物の飼育(小動物や昆虫)",
         "achievements": [
@@ -46,6 +49,7 @@
         "id": "poli_204",
         "name": "藤田 美季",
         "image_url": "",
+        "political_party": "参政党", 
         "description": "参政党所属の元看護師・そろばん講師。2024年衆議院選挙に大阪2区から出馬",
         "hobbies": "美容、自己表現、国際交流",
         "achievements": [
@@ -59,6 +63,7 @@
         "id": "poli_205",
         "name": "堀内 孝雄",
         "image_url": "",
+        "political_party": "無所属", 
         "description": "大阪2区を拠点に活動する無所属の政治家。市民生活重視・カジノ反対などを主張",
         "hobbies": "自転車で地域巡回、街頭演説",
         "achievements": [

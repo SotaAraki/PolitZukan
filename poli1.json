@@ -3,6 +3,7 @@
         "id": "poli_101",
         "name": "井上 英孝",
         "image_url": "",
+        "political_party": "維新の会",
         "description": "日本維新の会組織局長、同常任役員・選対本部長代行などを歴任。",
         "hobbies": "運動(高校、大学とラグビー部に所属)",
         "achievements": [
@@ -17,6 +18,7 @@
         "id": "poli_102",
         "name": "大西 宏幸",
         "image_url": "",
+        "political_party": "自民党", 
         "description": "平成7年大阪市会議員初当選後、4期連続当選。労働組合によるヤミ専従問題の解消を成し遂げた。",
         "hobbies": "音楽鑑賞、お祭り参加",
         "achievements": [
@@ -31,6 +33,7 @@
         "id": "poli_103",
         "name": "竹内 祥倫",
         "image_url": "",
+        "political_party": "共産党", 
         "description": "日本共産党所属の政治家で大阪1区を拠点に活動。医療現場での勤務経験を活かし、くらしや社会保障の課題に取り組む。",
         "hobbies": "映画鑑賞",
         "achievements": [
@@ -43,7 +46,8 @@
     {
         "id": "poli_104",
         "name": "宮出 千慧",
-        "image_url": "",
+        "image_url": "参政党",
+        "political_party": "", 
         "description": "参政党所属の政治活動家。米国留学後に帰国し、建設会社での実務経験を経て政治の道へ。教育・食の安全・歴史認識などに強い問題意識を持つ。",
         "hobbies": "読書、そば・団子が好き",
         "achievements": [
