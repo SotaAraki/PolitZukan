@@ -1,4 +1,4 @@
-// 入力内容の反映
+// テキスト反映処理
 document.getElementById('circleText').addEventListener('input', function () {
   document.getElementById('circle').textContent = this.value || '白';
 });
@@ -15,72 +15,75 @@ document.getElementById('footerText').addEventListener('input', function () {
   document.getElementById('footer').textContent = this.value || 'S56';
 });
 
-// 画像アップロード → 背景として設定
+// 背景画像読み込み
+document.getElementById('bgInput').addEventListener('change', function (event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    document.getElementById('cardBackground').style.backgroundImage = `url(${e.target.result})`;
+  };
+  reader.readAsDataURL(file);
+});
+
+// 人物画像読み込み
 document.getElementById('imageInput').addEventListener('change', function (event) {
   const file = event.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
   reader.onload = function (e) {
-    // 背景画像セット
-    document.getElementById('cardBackground').style.backgroundImage = `url(${e.target.result})`;
+    const personImage = document.getElementById('personImage');
+    personImage.src = e.target.result;
+    updatePersonImage(); // 調整反映
   };
   reader.readAsDataURL(file);
 });
 
-// 背景画像の位置・サイズの初期値（%）
+// 人物画像の位置・サイズ調整
 let posX = 50;
 let posY = 50;
 let scale = 100;
 
-const background = document.getElementById('cardBackground');
-
-// 背景画像の表示位置とサイズを更新する関数
-function updateBackground() {
-  // background-position: X% Y%
-  background.style.backgroundPosition = `${posX}% ${posY}%`;
-
-  // background-size: scale% auto (縦横比維持のためauto)
-  background.style.backgroundSize = `${scale}% auto`;
+function updatePersonImage() {
+  const image = document.getElementById('personImage');
+  image.style.left = `${posX}%`;
+  image.style.top = `${posY}%`;
+  image.style.width = `${scale}%`;
 }
 
-// スライダーイベント設定（X位置）
 document.getElementById('posXRange').addEventListener('input', (e) => {
   posX = e.target.value;
-  updateBackground();
+  updatePersonImage();
 });
 
-// スライダーイベント設定（Y位置）
 document.getElementById('posYRange').addEventListener('input', (e) => {
   posY = e.target.value;
-  updateBackground();
+  updatePersonImage();
 });
 
-// スライダーイベント設定（拡大縮小）
 document.getElementById('scaleRange').addEventListener('input', (e) => {
   scale = e.target.value;
-  updateBackground();
+  updatePersonImage();
 });
 
-// 初期化で一度反映
-updateBackground();
+updatePersonImage();
 
-// ダウンロード処理
+// カード保存（ID_名前card.png）
 document.getElementById('downloadBtn').addEventListener('click', function () {
   const card = document.getElementById('card');
   html2canvas(card, {
     scale: 2,
     useCORS: true
   }).then((canvas) => {
-    const link = document.createElement('a');
-
-    // 入力された名前を取得して、空なら "card" を使用
     const nameInput = document.getElementById('nameText').value.trim();
-    const fileName = nameInput !== '' ? `${nameInput}card.png` : 'card.png';
+    const idInput = document.getElementById('idText').value.trim();
+    const fileName = `${idInput || 'ID'}_${nameInput || 'card'}card.png`;
 
+    const link = document.createElement('a');
     link.download = fileName;
     link.href = canvas.toDataURL('image/png');
     link.click();
   });
 });
-
