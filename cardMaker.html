@@ -9,26 +9,36 @@
   <h1>カードジェネレーター</h1>
 
   <div class="form">
+    <!-- IDは表示に使わず、保存名用 -->
+    <input type="text" id="idText" placeholder="ID（例：101）" />
+
     <input type="text" id="circleText" placeholder="政党（例：自）" />
     <input type="text" id="nameText" placeholder="名前（例：小泉 進次郎）" />
-    <input type="file" id="imageInput" accept="image/*" />
-
-    <!-- 追加：画像位置・拡大縮小調整スライダー -->
-    <label for="posXRange">画像X位置調整</label>
-    <input type="range" id="posXRange" min="0" max="100" value="50" />
-    <label for="posYRange">画像Y位置調整</label>
-    <input type="range" id="posYRange" min="0" max="100" value="50" />
-    <label for="scaleRange">画像拡大縮小</label>
-    <input type="range" id="scaleRange" min="50" max="150" value="100" />
-
     <input type="text" id="skillText" placeholder="技名（例：肘打ちエルボー）" />
     <input type="text" id="footerText" placeholder="生まれ年（例：S56）" />
+
+    <div class="adjustment-wrapper">
+      <div class="adjust-left">
+        <label for="posXRange">人物X位置調整</label>
+        <input type="range" id="posXRange" min="0" max="100" value="50" />
+        <label for="posYRange">人物Y位置調整</label>
+        <input type="range" id="posYRange" min="0" max="100" value="50" />
+        <label for="scaleRange">人物拡大縮小</label>
+        <input type="range" id="scaleRange" min="50" max="150" value="100" />
+      </div>
+      <div class="adjust-right">
+        <label for="imageInput">人物画像</label>
+        <input type="file" id="imageInput" accept="image/*" />
+
+        <label for="bgInput">背景画像</label>
+        <input type="file" id="bgInput" accept="image/*" />
+      </div>
+    </div>
   </div>
 
-  <!-- カード本体 -->
   <div class="card" id="card">
-    <!-- 背景画像として設定 -->
     <div class="background" id="cardBackground"></div>
+    <img id="personImage" class="person-image" src="" alt="人物画像" />
 
     <div class="circle" id="circle">自</div>
     <div class="name" id="name">小泉 進次郎</div>
