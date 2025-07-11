@@ -2,7 +2,8 @@
     {
         "id": "poli_301",
         "name": "東 徹（あずま とおる）",
-        "image_url": "",
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/system-development-9bd2d.firebasestorage.app/o/301_%E6%9D%B1%20%E5%BE%B9card.png?alt=media&token=1d2b36ed-d4a8-42ba-b51e-72db47ca3ddf",
+        "political_party": "維新の会",
         "description": "東徹は日本維新の会所属の衆議院議員であり、もと社会福祉士。地方議会から国政まで幅広く携わり、“身を切る改革”を掲げています。",
         "hobbies": "（情報なし）",
         "achievements": [
@@ -16,8 +17,7 @@
     {
         "id": "poli_302",
         "name": "佐藤 茂樹（さとう しげき）",
-        "image_url": "",
-        "description": "佐藤茂樹は公明党所属の衆議院議員（10期）で、副代表や国会対策委員長を務め、“清潔な政治”や防災・福祉政策に注力しています。",
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/system-development-9bd2d.firebasestorage.app/o/302_%E4%BD%90%E8%97%A4%20%E8%8C%82%E6%A8%B9card.png?alt=media&token=da2c6611-c71c-496a-804e-fa587be12811",
         "hobbies": "読書、映画鑑賞、ジョギング、格闘技観戦",
         "achievements": [
             {"year": 1993, "event": "初当選", "detail": "旧大阪6区から初当選、衆議院議員に"},
@@ -30,7 +30,8 @@
     {
         "id": "poli_303",
         "name": "萩原 仁（はぎはら ひとし）",
-        "image_url": "",
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/system-development-9bd2d.firebasestorage.app/o/303_%E8%90%A9%E5%8E%9F%20%E4%BB%81card.png?alt=media&token=b1a1669d-3cb8-4bf3-a76a-f01c026a3dfb",
+        "political_party": "立憲民主党",
         "description": "萩原仁は大阪市出身の元衆議院議員（1期）、立憲民主党所属。企業経営出身で、中小企業支援や国際協力、防災対策などに注力しています。",
         "hobbies": "ボクシング（学生時代）、スポーツ観戦",
         "achievements": [
@@ -44,7 +45,8 @@
     {
         "id": "poli_304",
         "name": "渡部 結（わたなべ ゆい）",
-        "image_url": "",
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/system-development-9bd2d.firebasestorage.app/o/304_%E6%B8%A1%E9%83%A8%20%E7%B5%90card.png?alt=media&token=3960b57b-5bd6-46b0-8a33-b52226b2ef53",
+        "political_party": "共産党",
         "description": "渡部結は日本共産党所属、大阪3区で活動する国政対策委員長・府副委員長。ジェンダー平等や福祉・教育の政策推進に力を注いでいます。",
         "hobbies": "学生時代：吹奏楽部",
         "achievements": [
@@ -59,7 +61,8 @@
     {
         "id": "poli_305",
         "name": "中条 栄太郎（ちゅうじょう えいたろう）",
-        "image_url": "",
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/system-development-9bd2d.firebasestorage.app/o/305_%E4%B8%AD%E6%9D%A1%20%E6%A0%84%E5%A4%AA%E9%83%8Ecard.png?alt=media&token=8dc998a5-4766-447d-82e3-c1ea23ad46c0",
+        "political_party": "無所属",
         "description": "中条栄太郎は大阪市出身の無所属政治家、不動産社長。大阪3区から衆院選に挑戦し、自民党と距離を置く保守層に訴えています。",
         "hobbies": "日本拳法（高校・大学にて）、弓道",
         "achievements": [

@@ -1,3 +1,4 @@
+/* 全体の基本スタイル */
 body {
   font-family: sans-serif;
   background: #f0f0f0;
@@ -8,24 +9,60 @@ h1 {
   margin-bottom: 10px;
 }
 
-.form input,
-.form label {
-  display: block;
+/* 入力欄とラジオボタンを横に並べる */
+.form {
+  display: flex;               /* 横並び */
+  gap: 20px;                   /* 左右の間隔 */
+  align-items: flex-start;     /* 上揃え */
   margin-bottom: 10px;
+}
+
+/* 左側の入力欄グループ（ID・政党・名前・技名・生年） */
+.form-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 各入力欄の共通スタイル */
+.form-left input {
+  width: 280px;
+  margin-bottom: 6px;          /* 縦の間隔を詰める */
   font-size: 14px;
-  width: 300px;
+  padding: 4px 6px;
 }
 
-.form label {
-  margin-top: 10px;
-  font-weight: bold;
+/* 右側のラジオボタングループ */
+.party-radios {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;                    /* ラジオボタン間の縦間隔を縮小 */
+  font-size: 13px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+  max-height: 170px;           /* 高さ制限 */
+  overflow-y: auto;            /* オーバーしたらスクロール */
+  min-width: 140px;
+  margin-top: 6px;             /* 上側の位置を揃える */
 }
 
+/* 各ラジオボタンラベルの表示スタイル */
+.party-radios label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* 背景・人物画像調整ブロック */
 .adjustment-wrapper {
   display: flex;
   gap: 20px;
 }
 
+/* 左側：スライダー */
 .adjust-left,
 .adjust-right {
   display: flex;
@@ -44,21 +81,21 @@ h1 {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* 背景画像 */
+/* 背景画像エリア */
 .background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("public/image/cardBackground.png");
+  background-image: url("public/image/cardBackground.png"); /* 初期背景画像 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
 }
 
-/* 人物画像 */
+/* 人物画像（imgタグで表示） */
 .person-image {
   position: absolute;
   top: 0;
@@ -69,7 +106,7 @@ h1 {
   pointer-events: none;
 }
 
-/* 政党マーク */
+/* 政党マーク（左上の丸） */
 .circle {
   top: 0px;
   left: 0px;
@@ -87,7 +124,7 @@ h1 {
   z-index: 2;
 }
 
-/* 名前 */
+/* 名前欄 */
 .name {
   top: 15px;
   left: 120px;
@@ -99,7 +136,7 @@ h1 {
   z-index: 2;
 }
 
-/* 必殺ラベル */
+/* 「必殺」ラベル */
 .label {
   top: 280px;
   left: 30px;
@@ -113,7 +150,7 @@ h1 {
   z-index: 2;
 }
 
-/* 技名 */
+/* 技名表示 */
 .skill {
   top: 310px;
   width: 100%;
@@ -125,7 +162,7 @@ h1 {
   z-index: 2;
 }
 
-/* 生まれ年 */
+/* 生まれ年（下部） */
 .footer {
   bottom: 10px;
   left: 50%;
@@ -139,6 +176,7 @@ h1 {
   z-index: 2;
 }
 
+/* カード保存ボタン */
 #downloadBtn {
   margin-top: 20px;
   padding: 8px 16px;
