@@ -46,8 +46,8 @@
     {
         "id": "poli_104",
         "name": "宮出 千慧",
-        "image_url": "参政党",
-        "political_party": "", 
+        "image_url": "",
+        "political_party": "参政党", 
         "description": "参政党所属の政治活動家。米国留学後に帰国し、建設会社での実務経験を経て政治の道へ。教育・食の安全・歴史認識などに強い問題意識を持つ。",
         "hobbies": "読書、そば・団子が好き",
         "achievements": [
