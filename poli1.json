@@ -2,7 +2,7 @@
     {
         "id": "poli_101",
         "name": "井上 英孝",
-        "image_url": "",
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/system-development-9bd2d.firebasestorage.app/o/101_%E4%BA%95%E4%B8%8A%20%E8%8B%B1%E5%AD%9Dcard.png?alt=media&token=d52a9e0b-e96e-45d1-8862-bc0a5d52cc01",
         "political_party": "維新の会",
         "description": "日本維新の会組織局長、同常任役員・選対本部長代行などを歴任。",
         "hobbies": "運動(高校、大学とラグビー部に所属)",
@@ -17,7 +17,7 @@
     {
         "id": "poli_102",
         "name": "大西 宏幸",
-        "image_url": "",
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/system-development-9bd2d.firebasestorage.app/o/102_%E5%A4%A7%E8%A5%BF%20%E5%AE%8F%E5%B9%B8card.png?alt=media&token=844a5894-9a00-49ab-934d-b3f06799852d",
         "political_party": "自民党", 
         "description": "平成7年大阪市会議員初当選後、4期連続当選。労働組合によるヤミ専従問題の解消を成し遂げた。",
         "hobbies": "音楽鑑賞、お祭り参加",
@@ -32,7 +32,7 @@
     {
         "id": "poli_103",
         "name": "竹内 祥倫",
-        "image_url": "",
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/system-development-9bd2d.firebasestorage.app/o/103_%E7%AB%B9%E5%86%85%20%E7%A5%A5%E5%80%ABcard.png?alt=media&token=578848f9-a9ad-4807-96ca-9635de184d04",
         "political_party": "共産党", 
         "description": "日本共産党所属の政治家で大阪1区を拠点に活動。医療現場での勤務経験を活かし、くらしや社会保障の課題に取り組む。",
         "hobbies": "映画鑑賞",
@@ -46,7 +46,7 @@
     {
         "id": "poli_104",
         "name": "宮出 千慧",
-        "image_url": "",
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/system-development-9bd2d.firebasestorage.app/o/104_%E5%AE%AE%E5%87%BA%20%E5%8D%83%E6%85%A7card.png?alt=media&token=7d4a2770-df1c-490b-bba0-cf98f36eaf35",
         "political_party": "参政党", 
         "description": "参政党所属の政治活動家。米国留学後に帰国し、建設会社での実務経験を経て政治の道へ。教育・食の安全・歴史認識などに強い問題意識を持つ。",
         "hobbies": "読書、そば・団子が好き",
