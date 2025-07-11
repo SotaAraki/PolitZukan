@@ -122,7 +122,6 @@ async function addFavorite(cardId, data) {
     image_url: data.image_url // ←これが超重要
   });
   favoriteCardIds.add(cardId);
-  alert(`${data.name}をお気に入りに登録しました`);
   document.getElementById("popup").style.display = "none";
   renderPage(currentPage);
 }
