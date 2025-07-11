@@ -9,27 +9,64 @@ body {
 }
 
 h1 {
-  font-size: 1.5em;
+  font-size: 1.3em;
+  margin-bottom: 5px;
+}
+
+h2 {
+  margin-top: 30px;
+  font-size: 1.2em;
+}
+
+#thread-body {
+  font-size: 1em;
   margin-bottom: 20px;
 }
 
-#threads-container {
+#replies-container {
   max-width: 600px;
   margin: 0 auto;
   text-align: left;
 }
 
-.thread {
+.reply, .child-reply {
   background: rgba(255,255,255,0.1);
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
+  position: relative;
 }
 
-.thread-title {
-  font-weight: bold;
-  font-size: 1.1em;
+.child-reply {
+  margin-left: 20px;
 }
+
+.reply-author {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.reply-text {
+  margin-top: 5px;
+}
+
+.reply-actions button {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  margin-right: 6px;
+  cursor: pointer;
+  padding: 4px 10px;
+  font-size: 0.9em;
+  border-radius: 6px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.reply-actions button:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.05);
+}
+
 
 .modal {
   display: none;
@@ -51,23 +88,11 @@ h1 {
   text-align: center;
 }
 
-.modal-content input {
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  margin-bottom: 10px;
-  width: 100%;
-  font-size: 1em;
-}
-
 .modal-content textarea {
   width: 100%;
   padding: 10px;
   border-radius: 6px;
-  border: none;
-  font-size: 1em;
   margin-bottom: 10px;
-  min-height: 100px;
 }
 
 .modal-content button {
@@ -84,7 +109,6 @@ h1 {
   background-color: #e6c200;
 }
 
-
 .close {
   position: absolute;
   top: 10px;
@@ -94,19 +118,10 @@ h1 {
   color: white;
 }
 
-.thread:hover {
-  background: rgba(255,255,255,0.2);
-}
-
-.thread div:last-child {
-  margin-top: 6px;
-  font-size: 0.9em;
-  color: #ddd;
-}
-#open-thread-dialog {
-  background: linear-gradient(135deg, #4FC3F7, #0288D1);
+#open-root-reply {
+  background: linear-gradient(135deg, #FFD700, #FFB300);
   border: none;
-  color: white;
+  color: #381819;
   padding: 10px 20px;
   font-size: 1em;
   font-weight: bold;
@@ -116,10 +131,11 @@ h1 {
   transition: background-color 0.3s, transform 0.2s;
 }
 
-#open-thread-dialog:hover {
-  background: linear-gradient(135deg, #0288D1, #4FC3F7);
+#open-root-reply:hover {
+  background: linear-gradient(135deg, #FFB300, #FFD700);
   transform: translateY(-2px);
 }
+
 
 
 #modorubutton {

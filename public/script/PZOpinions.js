@@ -5,63 +5,99 @@ import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, getD
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const container = document.getElementById("opinions-container");
-const submitButton = document.getElementById("submit-opinion");
-const textarea = document.getElementById("opinion-text");
+const container = document.getElementById("threads-container");
+const openDialog = document.getElementById("open-thread-dialog");
+const modal = document.getElementById("thread-modal");
+const closeModal = document.getElementById("close-thread-modal");
+const submitButton = document.getElementById("submit-thread");
+const titleInput = document.getElementById("thread-title");
+const bodyInput = document.getElementById("thread-body");
 
 let currentUser = null;
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
     currentUser = user;
-    loadOpinions();
+    loadThreads();
   } else {
     container.textContent = "ログインが必要です。";
-    submitButton.disabled = true;
+    openDialog.disabled = true;
   }
 });
 
-async function loadOpinions() {
+async function loadThreads() {
   container.textContent = "読み込み中...";
-  const q = query(collection(db, "opinions"), orderBy("createdAt", "desc"));
+  const q = query(collection(db, "threads"), orderBy("createdAt", "desc"));
   const snap = await getDocs(q);
 
   container.innerHTML = "";
-  snap.forEach(doc => {
-    const data = doc.data();
+  for (const docSnap of snap.docs) {
+    const data = docSnap.data();
     const div = document.createElement("div");
-    div.className = "opinion";
+    div.className = "thread";
 
-    const author = document.createElement("div");
-    author.className = "opinion-author";
-    author.textContent = data.displayName || "匿名";
+    const title = document.createElement("div");
+    title.className = "thread-title";
+    title.textContent = data.title;
 
-    const text = document.createElement("div");
-    text.className = "opinion-text";
-    text.textContent = data.text;
+    const body = document.createElement("div");
+    body.textContent = data.body || "";
 
-    div.appendChild(author);
-    div.appendChild(text);
+    const count = document.createElement("div");
+    count.textContent = "読み込み中...";
+
+    // 件数を取得
+    const repliesSnap = await getDocs(collection(db, `threads/${docSnap.id}/replies`));
+    const replyCount = repliesSnap.size;
+    count.textContent = `👥 返信：${replyCount}件`;
+
+    div.appendChild(title);
+    div.appendChild(body);
+    div.appendChild(count);
+
+    div.style.cursor = "pointer";
+    div.addEventListener("click", () => {
+      window.location.href = `PZThreadDetail.html?id=${docSnap.id}`;
+    });
+
     container.appendChild(div);
-  });
+  }
 }
 
+
+// モーダル表示
+openDialog.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+// 閉じる
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
+  titleInput.value = "";
+  bodyInput.value = "";
+});
+
+// 作成
 submitButton.addEventListener("click", async () => {
-  const text = textarea.value.trim();
-  if (!text) {
-    alert("意見を入力してください。");
+  const title = titleInput.value.trim();
+  const body = bodyInput.value.trim();
+  if (!title) {
+    alert("タイトルを入力してください。");
     return;
   }
   if (!currentUser) {
     alert("ログインが必要です。");
     return;
   }
-  await addDoc(collection(db, "opinions"), {
+  await addDoc(collection(db, "threads"), {
     uid: currentUser.uid,
     displayName: currentUser.displayName || "匿名",
-    text,
+    title,
+    body,
     createdAt: serverTimestamp()
   });
-  textarea.value = "";
-  await loadOpinions();
+  modal.style.display = "none";
+  titleInput.value = "";
+  bodyInput.value = "";
+  await loadThreads();
 });
