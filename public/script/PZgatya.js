@@ -28,12 +28,12 @@ packWrapper.addEventListener('click', async () => {
     return;
   }
 
-  const lastTime = await getLastGachaTime(user.uid);
-  if (lastTime && new Date() - lastTime < SIX_HOURS_MS) {
-    const { hours, minutes } = getTimeRemaining(lastTime);
-    alert(`次のガチャは ${hours}時間${minutes}分後に引けます。`);
-    return;
-  }
+  // const lastTime = await getLastGachaTime(user.uid);
+  // if (lastTime && new Date() - lastTime < SIX_HOURS_MS) {
+  //   const { hours, minutes } = getTimeRemaining(lastTime);
+  //   alert(`次のガチャは ${hours}時間${minutes}分後に引けます。`);
+  //   return;
+  // }
 
   opened = true;
   await setGachaTimestamp(user.uid);

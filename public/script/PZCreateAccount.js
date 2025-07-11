@@ -34,7 +34,7 @@ async function signUp() {
       createdAt: new Date()
     });
 
-    window.location.href = "/PZlogin.html";
+    window.location.href = "PZlogin.html";
   } catch (error) {
     errorMessage.textContent = "エラー: " + error.message;
   }
