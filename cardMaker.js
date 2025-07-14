@@ -87,3 +87,29 @@ document.getElementById('downloadBtn').addEventListener('click', function () {
     link.click();
   });
 });
+
+// 政党の丸：テキスト優先、それ以外はラジオ
+const circleEl = document.getElementById('circle');
+const circleInput = document.getElementById('circleText');
+
+// 入力時：常に反映＆優先
+circleInput.addEventListener('input', function () {
+  circleEl.textContent = this.value || getSelectedPartyInitial() || '白';
+});
+
+// ラジオボタンの初期取得関数
+function getSelectedPartyInitial() {
+  const selected = document.querySelector('input[name="party"]:checked');
+  return selected ? selected.value : '';
+}
+
+// ラジオボタン選択時
+const partyRadios = document.querySelectorAll('input[name="party"]');
+partyRadios.forEach(radio => {
+  radio.addEventListener('change', () => {
+    // テキスト入力が空欄ならラジオボタン反映
+    if (!circleInput.value.trim()) {
+      circleEl.textContent = getSelectedPartyInitial();
+    }
+  });
+});

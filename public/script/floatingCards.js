@@ -11,34 +11,34 @@ html内に以下のコードを追加
 // 表示するカード画像のファイルパス
 const cardImages = [
   // 1
-  "image/cardImages/井上 英孝card.png",
-  "image/cardImages/大西 宏幸card.png",
-  "image/cardImages/竹内 祥倫card.png",
-  "image/cardImages/宮出 千慧card.png",
+  "image/cardImages/101_井上 英孝card.png",
+  "image/cardImages/102_大西 宏幸card.png",
+  "image/cardImages/103_竹内 祥倫card.png",
+  "image/cardImages/104_宮出 千慧card.png",
   // 2
-  "image/cardImages/守島 正card.png",
-  "image/cardImages/左藤 章card.png",
-  "image/cardImages/小川 陽太card.png",
-  "image/cardImages/藤田 美季card.png",
-  "image/cardImages/堀内 孝雄card.png",
+  "image/cardImages/201_守島 正card.png",
+  "image/cardImages/202_左藤 章card.png",
+  "image/cardImages/203_小川 陽太card.png",
+  "image/cardImages/204_藤田 美季card.png",
+  "image/cardImages/205_堀内 孝雄card.png",
   // 3
-  "image/cardImages/東 徹card.png",
-  "image/cardImages/佐藤 茂樹card.png",
-  "image/cardImages/萩原 仁card.png",
-  "image/cardImages/渡部 結card.png",
-  "image/cardImages/中条 栄太郎card.png",
+  "image/cardImages/301_東 徹card.png",
+  "image/cardImages/302_佐藤 茂樹card.png",
+  "image/cardImages/303_萩原 仁card.png",
+  "image/cardImages/304_渡部 結card.png",
+  "image/cardImages/305_中条 栄太郎card.png",
   // 4
-  "image/cardImages/美延 映夫card.png",
-  "image/cardImages/中山 泰秀card.png",
-  "image/cardImages/清水 忠史card.png",
-  "image/cardImages/黒川 洋司card.png",
-  "image/cardImages/寺川 幸生栄card.png",
+  "image/cardImages/401_美延 映夫card.png",
+  "image/cardImages/402_中山 泰秀card.png",
+  "image/cardImages/403_清水 忠史card.png",
+  "image/cardImages/404_黒川 洋司card.png",
+  "image/cardImages/405_寺川 幸生栄card.png",
   // 5
-  "image/cardImages/梅村 聡card.png",
-  "image/cardImages/国重 徹card.png",
-  "image/cardImages/大石 晃子card.png",
-  "image/cardImages/宮本 岳志card.png",
-  "image/cardImages/石橋 篤史card.png",
+  "image/cardImages/501_梅村 聡card.png",
+  "image/cardImages/502_国重 徹card.png",
+  "image/cardImages/503_大石 晃子card.png",
+  "image/cardImages/504_宮本 岳志card.png",
+  "image/cardImages/505_石橋 篤史card.png",
 ];
 const cardCount = 10;                       // 表示するカードの枚数
 

@@ -1,0 +1,149 @@
+body {
+  background: url("../image/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Helvetica', sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.3em;
+  margin-bottom: 5px;
+}
+
+h2 {
+  margin-top: 30px;
+  font-size: 1.2em;
+}
+
+#thread-body {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+#replies-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.reply, .child-reply {
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.child-reply {
+  margin-left: 20px;
+}
+
+.reply-author {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.reply-text {
+  margin-top: 5px;
+}
+
+.reply-actions button {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  margin-right: 6px;
+  cursor: pointer;
+  padding: 4px 10px;
+  font-size: 0.9em;
+  border-radius: 6px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.reply-actions button:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.05);
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: rgba(0,0,0,0.9);
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.modal-content button {
+  padding: 8px 20px;
+  font-size: 1em;
+  border-radius: 6px;
+  background-color: #FFD700;
+  border: none;
+  color: #381819;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #e6c200;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: white;
+}
+
+#open-root-reply {
+  background: linear-gradient(135deg, #FFD700, #FFB300);
+  border: none;
+  color: #381819;
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#open-root-reply:hover {
+  background: linear-gradient(135deg, #FFB300, #FFD700);
+  transform: translateY(-2px);
+}
+
+
+
+#modorubutton {
+  position: fixed;        /* 常に画面の同じ場所に表示 */
+  top: 10px;              /* 上から10px */
+  left: 10px;             /* 左から10px */
+  width: 40px;            /* 適度なサイズ */
+  height: auto;
+  cursor: pointer;
+  z-index: 1000;          /* 前面に表示 */
+}
