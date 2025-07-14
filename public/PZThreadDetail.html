@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>スレッド詳細</title>
+  <link rel="stylesheet" href="styles/PZThreadDetail.css">
+</head>
+<body>
+  <img onclick="location.href='PZOpinions.html'" id="modorubutton" src="./image/backyajirusi.png" alt="スレッド一覧へ戻る">
+
+  <h1 id="thread-title">読み込み中...</h1>
+  <button id="delete-thread-button" style="display:none; margin-top:10px;">このスレッドを削除する</button>
+
+  <p id="thread-body"></p>
+
+  <button id="open-root-reply">このスレッドに返信する</button>
+
+  <h2>返信</h2>
+  <div id="replies-container">読み込み中...</div>
+
+  <!-- 返信モーダル -->
+  <div id="reply-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-reply-modal" class="close">&times;</span>
+      <textarea id="modal-reply-text" placeholder="返信を入力"></textarea>
+      <button id="modal-submit-reply">返信する</button>
+    </div>
+  </div>
+
+  <script type="module" src="script/PZThreadDetail.js"></script>
+</body>
+</html>

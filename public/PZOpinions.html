@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>スレッド一覧</title>
+  <link rel="stylesheet" href="styles/PZOpinions.css">
+</head>
+<body>
+  <img onclick="location.href='PZHome.html'" id="modorubutton" src="./image/backyajirusi.png" alt="ホームへ戻る">
+
+  <h1>みんなの意見</h1>
+
+  <button id="open-thread-dialog">新規スレッドを作成</button>
+
+  <div id="threads-container">読み込み中...</div>
+
+  <!-- 新規スレッドモーダル -->
+  <div id="thread-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-thread-modal" class="close">&times;</span>
+      <input type="text" id="thread-title" placeholder="タイトル" style="width:100%; margin-bottom:8px;">
+      <textarea id="thread-body" placeholder="本文 (任意)"></textarea>
+      <button id="submit-thread">作成</button>
+    </div>
+  </div>
+
+  <script type="module" src="script/PZOpinions.js"></script>
+</body>
+</html>
