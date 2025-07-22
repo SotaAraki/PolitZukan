@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="styles/PZDetail.css" />
 </head>
 <body>
+  <div id="header"></div>
+  
   <header>
     <h1>日本の主要政党</h1>
   </header>
@@ -99,6 +101,12 @@
 
         document.getElementById('detailDialog').showModal();
       });
+    });
+
+    fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('header').innerHTML = html;
     });
   </script>
 </body>
