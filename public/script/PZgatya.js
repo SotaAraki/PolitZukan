@@ -56,6 +56,8 @@ packWrapper.addEventListener('click', async () => {
     cardImg.src = randomCard.image_url;
     cardImg.style.display = 'block';
 
+    
+
     voteBox.classList.remove('show');
 
     setTimeout(() => {

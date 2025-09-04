@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>通報管理画面</title>
+  <script type="module" src="script/admin.js"></script>
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+  <div id="header"></div>
+  <div class="container">
+    <h1>通報されたコメント管理</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>スレッドID</th>
+          <th>コメントID</th>
+          <th>内容</th>
+          <th>通報数</th>
+          <th>状態</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="report-table-body"></tbody>
+    </table>
+  </div>
+
+  <!-- ✅ モバイル下部ナビゲーションバー -->
+  <div id="mobile-bottom-nav">
+    <a href="PZHome.html" class="nav-item">
+      <img src="image/home_icon.png" alt="ホーム" />
+      
+    </a>
+    <a href="PZOJlist.html" class="nav-item">
+      <img src="image/zukan_icon.png" alt="図鑑" />
+      
+    </a>
+    <a href="PZgatya.html" class="nav-item">
+      <img src="image/gacha_icon.png" alt="ガチャ" />
+      
+    </a>
+  </div>
+
+</body>
+
+</html>

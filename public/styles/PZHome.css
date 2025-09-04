@@ -46,6 +46,13 @@ body {
   transform: scale(1.1);
 }
 
+.admin-section{
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
 /* === ログインリンク === */
 .login-link {
   margin-top: 40px;

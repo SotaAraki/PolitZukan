@@ -1,0 +1,148 @@
+/* === ベース設定 === */
+body {
+  background: url("../image/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: sans-serif;
+  color: #f6f5f5;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 半透明のパネル */
+.container {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  width: 100%;
+  max-width: 1000px;
+  overflow-x: auto; /* 表がはみ出るのを防ぐ */
+}
+
+/* 見出し */
+h1 {
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 表全体 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  table-layout: fixed;
+  word-break: break-word;
+}
+
+/* ヘッダーとセル */
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #000;
+}
+
+tr[data-hidden="true"] {
+  background-color: #fdd;
+  color: #900;
+}
+
+/* ボタン */
+button {
+  margin-right: 5px;
+  padding: 6px 12px;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #eee;
+}
+
+/* === ✅ スマホ対応（768px以下） === */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  table, th, td {
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  button {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+}
+
+/* ✅ モバイル固定ナビバー */
+#mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(207, 172, 90, 0.85);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0 4px;
+  z-index: 1000;
+}
+
+/* ✅ ナビアイテム（リンク） */
+#mobile-bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  width: 33%;
+}
+
+/* ✅ アイコン画像 */
+#mobile-bottom-nav .nav-item img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-bottom: 3px;
+  filter: drop-shadow(0 0 2px rgba(11, 11, 11, 0.4));
+}
+
+
+/* ✅ スマホ表示のみ */
+@media (max-width: 768px) {
+  #mobile-bottom-nav {
+    display: flex;
+  }
+
+  body {
+    padding-bottom: 70px; /* ナビバーが下を隠さないようにスペース確保 */
+  }
+}

@@ -2,9 +2,12 @@ import { app } from "./firebase.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, collection, query, orderBy, getDocs, addDoc, serverTimestamp, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+// === Firebase設定 ===
 const auth = getAuth(app);
 const db = getFirestore(app);
+const PERSPECTIVE_API_KEY = "AIzaSyCKcUeNPMpKVwDCS2AfXWZHm_keJSiAuGs"; // ←取得したキーを設定
 
+// === DOM要素取得 ===
 const urlParams = new URLSearchParams(window.location.search);
 const threadId = urlParams.get("id");
 
@@ -16,11 +19,13 @@ const replyModal = document.getElementById("reply-modal");
 const closeReplyModal = document.getElementById("close-reply-modal");
 const modalTextarea = document.getElementById("modal-reply-text");
 const modalSubmitButton = document.getElementById("modal-submit-reply");
+const deleteThreadButton = document.getElementById("delete-thread-button");
 
 let currentUser = null;
 let currentParentId = null;
 let threadOwnerUid = null;
 
+// === ログイン状態確認 ===
 onAuthStateChanged(auth, (user) => {
   if (user) {
     currentUser = user;
@@ -32,6 +37,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// === スレッド情報読み込み ===
 async function loadThread() {
   const ref = doc(db, "threads", threadId);
   const snap = await getDoc(ref);
@@ -45,19 +51,17 @@ async function loadThread() {
   threadOwnerUid = data.uid;
 
   if (currentUser && currentUser.uid === threadOwnerUid) {
-    const delBtn = document.getElementById("delete-thread-button");
-    if (delBtn) delBtn.style.display = "inline-block";
+    if (deleteThreadButton) deleteThreadButton.style.display = "inline-block";
   }
 }
 
+// === 返信読み込み ===
 async function loadReplies() {
   container.textContent = "読み込み中...";
   const q = query(collection(db, `threads/${threadId}/replies`), orderBy("createdAt", "asc"));
   const snap = await getDocs(q);
 
   container.innerHTML = "";
-
-  // データを整理
   const replies = {};
   const children = {};
 
@@ -69,7 +73,6 @@ async function loadReplies() {
     children[parentId].push(docSnap.id);
   });
 
-  // ルート返信だけ先に表示
   (children[null] || []).forEach(replyId => {
     const reply = replies[replyId];
     const div = createReplyElement(reply, 0, children, replies);
@@ -77,20 +80,47 @@ async function loadReplies() {
   });
 }
 
+// === Perspective APIで不適切判定 ===
+async function isToxicComment(text) {
+  const response = await fetch(
+    `https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=${PERSPECTIVE_API_KEY}`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        comment: { text },
+        languages: ["ja"],
+        requestedAttributes: { TOXICITY: {} }
+      })
+    }
+  );
+
+  const result = await response.json();
+  const score = result.attributeScores.TOXICITY.summaryScore.value;
+  console.log("Toxicity score:", score);
+  return score > 0.1; // 0.8以上を不適切と判断
+}
+
+// === 返信表示UI作成 ===
 function createReplyElement(reply, depth, childrenMap, allReplies) {
   const { id, data } = reply;
   const div = document.createElement("div");
   div.className = "reply";
   div.style.marginLeft = `${depth * 20}px`;
 
-  const isThreadOwner = data.uid === threadOwnerUid;
+  if (data.hidden) {
+    div.textContent = "⚠️ この投稿は通報により非表示になっています";
+    div.style.color = "#999";
+    return div;
+  }
 
   const text = document.createElement("div");
   text.className = "reply-text";
   text.textContent = data.text;
 
-  if (isThreadOwner) {
+  // スレ主表示
+  if (data.uid === threadOwnerUid) {
     const ownerBadge = document.createElement("div");
+    ownerBadge.textContent = "スレ主";
     ownerBadge.style.fontSize = "0.75em";
     ownerBadge.style.fontWeight = "bold";
     ownerBadge.style.color = "#FFD700";
@@ -98,12 +128,13 @@ function createReplyElement(reply, depth, childrenMap, allReplies) {
     div.appendChild(ownerBadge);
     div.style.border = "1px solid #FFD700";
   }
-
   div.appendChild(text);
 
+  // アクションボタン
   const actions = document.createElement("div");
   actions.className = "reply-actions";
 
+  // 返信ボタン
   const replyButton = document.createElement("button");
   replyButton.textContent = "返信";
   replyButton.addEventListener("click", () => {
@@ -112,15 +143,44 @@ function createReplyElement(reply, depth, childrenMap, allReplies) {
   });
   actions.appendChild(replyButton);
 
+  // 通報ボタン
+  const reportButton = document.createElement("button");
+  reportButton.textContent = "⚠️ 通報";
+  reportButton.addEventListener("click", async () => {
+    if (!currentUser) {
+      alert("ログインが必要です。");
+      return;
+    }
+
+    const replyRef = doc(db, `threads/${threadId}/replies/${id}`);
+    // await updateDoc(replyRef, {
+    //   reportedCount: (data.reportedCount || 0) + 1,
+    //   hidden: (data.reportedCount || 0) + 1 >= 3 // 通報3回で自動非表示
+    // });
+    await updateDoc(replyRef, {
+      reportedCount: (data.reportedCount || 0) + 1
+      // hidden は自動では更新しない
+    });
+
+
+    alert("通報しました");
+    await loadReplies();
+  });
+  actions.appendChild(reportButton);
+
+  // 編集・削除ボタン
   if (currentUser && currentUser.uid === data.uid) {
     const editButton = document.createElement("button");
     editButton.textContent = "編集";
     editButton.addEventListener("click", async () => {
       const newText = prompt("編集内容を入力してください：", data.text);
-      if (newText !== null && newText.trim() !== "") {
-        await updateDoc(doc(db, `threads/${threadId}/replies/${id}`), {
-          text: newText.trim()
-        });
+      if (newText) {
+        const toxic = await isToxicComment(newText);
+        if (toxic) {
+          alert("不適切な表現が含まれているため編集できません");
+          return;
+        }
+        await updateDoc(doc(db, `threads/${threadId}/replies/${id}`), { text: newText });
         loadReplies();
       }
     });
@@ -146,26 +206,17 @@ function createReplyElement(reply, depth, childrenMap, allReplies) {
     const toggle = document.createElement("button");
     toggle.textContent = `返信を表示 (${childIds.length}件)`;
     toggle.style.marginTop = "6px";
-    toggle.style.background = "rgba(255,255,255,0.1)";
-    toggle.style.border = "none";
-    toggle.style.color = "#fff";
-    toggle.style.padding = "4px 8px";
-    toggle.style.cursor = "pointer";
-    toggle.style.borderRadius = "4px";
-    toggle.style.fontSize = "0.9em";
 
     const childContainer = document.createElement("div");
     childContainer.style.display = "none";
     childContainer.style.marginTop = "6px";
 
     toggle.addEventListener("click", () => {
-      if (childContainer.style.display === "none") {
-        childContainer.style.display = "block";
-        toggle.textContent = `返信を隠す (${childIds.length}件)`;
-      } else {
-        childContainer.style.display = "none";
-        toggle.textContent = `返信を表示 (${childIds.length}件)`;
-      }
+      const isHidden = childContainer.style.display === "none";
+      childContainer.style.display = isHidden ? "block" : "none";
+      toggle.textContent = isHidden
+        ? `返信を隠す (${childIds.length}件)`
+        : `返信を表示 (${childIds.length}件)`;
     });
 
     childIds.forEach(childId => {
@@ -180,40 +231,33 @@ function createReplyElement(reply, depth, childrenMap, allReplies) {
 
   return div;
 }
-const deleteThreadButton = document.getElementById("delete-thread-button");
 
+// === スレッド削除 ===
 deleteThreadButton.addEventListener("click", async () => {
   if (!confirm("このスレッドと全返信を削除しますか？")) return;
 
-  // まず全返信を削除
   const repliesSnap = await getDocs(collection(db, `threads/${threadId}/replies`));
-  const batchDeletes = [];
-  repliesSnap.forEach(docSnap => {
-    batchDeletes.push(deleteDoc(doc(db, `threads/${threadId}/replies/${docSnap.id}`)));
-  });
-  await Promise.all(batchDeletes);
+  await Promise.all(
+    repliesSnap.docs.map(docSnap => deleteDoc(doc(db, `threads/${threadId}/replies/${docSnap.id}`)))
+  );
 
-  // スレッド本体を削除
   await deleteDoc(doc(db, "threads", threadId));
-
-  alert("スレッドを削除しました。");
+  alert("スレッドを削除しました");
   window.location.href = "PZOpinions.html";
 });
 
-
-// 親スレッドへの返信
+// === 親スレッドへの返信 ===
 openRootReply.addEventListener("click", () => {
   currentParentId = null;
   replyModal.style.display = "flex";
 });
 
-// モーダル閉じる
+// === モーダル閉じる ===
 closeReplyModal.addEventListener("click", () => {
   replyModal.style.display = "none";
   modalTextarea.value = "";
 });
 
-// 枠外クリックで閉じる
 replyModal.addEventListener("click", (e) => {
   if (e.target === replyModal) {
     replyModal.style.display = "none";
@@ -221,24 +265,35 @@ replyModal.addEventListener("click", (e) => {
   }
 });
 
-// 送信
+// === 返信送信 ===
 modalSubmitButton.addEventListener("click", async () => {
   const text = modalTextarea.value.trim();
   if (!text) {
-    alert("返信を入力してください。");
+    alert("返信を入力してください");
     return;
   }
   if (!currentUser) {
-    alert("ログインが必要です。");
+    alert("ログインが必要です");
     return;
   }
+
+  // === Perspective APIによる不適切判定 ===
+  const toxic = await isToxicComment(text);
+  if (toxic) {
+    alert("不適切な言葉が含まれているため送信できません");
+    return;
+  }
+
   await addDoc(collection(db, `threads/${threadId}/replies`), {
     uid: currentUser.uid,
     displayName: currentUser.displayName || "匿名",
     text,
     createdAt: serverTimestamp(),
-    parentReplyId: currentParentId || null
+    parentReplyId: currentParentId || null,
+    reportedCount: 0,
+    hidden: false
   });
+
   modalTextarea.value = "";
   replyModal.style.display = "none";
   await loadReplies();

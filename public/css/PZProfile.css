@@ -1,0 +1,42 @@
+body {
+  background: url("../image/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Helvetica', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#modorubutton {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.title-area {
+  margin: 20px 0;
+}
+
+.gold-title {
+  display: inline-block;
+  margin: 5px;
+  padding: 6px 10px;
+  font-size: 1.2em;
+  color: gold;
+  text-shadow: 2px 2px 4px black;
+  border: 1px solid gold;
+  border-radius: 8px;
+}
