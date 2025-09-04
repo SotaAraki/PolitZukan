@@ -17,6 +17,11 @@ body {
   padding: 0;
   /* background-color: #f7f7f7; */
   color: #333;
+
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ========================
@@ -38,6 +43,8 @@ header {
   justify-content: center;
   gap: 1rem;
   padding: 2rem;
+  display: flex;           /* 横並びにする */
+  gap: 10px;               /* ボックス間の隙間 */
 }
 
 /* ========================
@@ -45,7 +52,11 @@ header {
 ======================== */
 .party-card {
   background-color: white;
-  width: 200px;
+  width: 100px;            /* 縦長の幅 */
+  height: 100%;           /* 縦長の高さ */
+  border: 1px solid #333;
+  background: #ede3d6;
+  
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -62,23 +73,26 @@ header {
 ======================== */
 .party-name {
   font-size: 1.5rem;
+  margin-top: 10px;
   margin-bottom: 0.5rem;
   color: #3c1f2b;
+  writing-mode: vertical-rl;
 }
 
 .party-description {
-  font-size: 1rem;
-  line-height: 1.5;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
 /* ========================
    フッター
 ======================== */
 footer {
+  color: #ffffff;
   text-align: center;
   padding: 1rem;
-  background-color: #eee;
-  margin-top: 2rem;
 }
 
 /* ========================
@@ -101,6 +115,13 @@ dialog {
 
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.4);
+}
+
+#dialogImage{
+  display: block;
+  max-width: 50%;
+  height: auto;
+  margin: 0; 
 }
 
 /* アニメーション定義 */
